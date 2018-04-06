@@ -1,0 +1,28 @@
+apiVersion: ui/v1beta1
+kind: Deployment
+metadata:
+  name: dooruideploy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dooruideploy
+    spec:
+      containers:
+      - name: dooruideploy
+        image: gcr.io/doorapi-200221/dooruideploy:v1
+        imagePullPolicy: Always
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: doorui-load-balancer
+spec:
+  selector:
+    app: dooruideploy
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  type: LoadBalancer

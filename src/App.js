@@ -21,7 +21,7 @@ class App extends Component {
 
     componentDidMount() {
 
-        fetch('http://localhost:8080/api/getAllDoors')
+        fetch('/api/getAllDoors')
             .then( results => {
                return results.json();
             }).then(data => {
@@ -42,7 +42,7 @@ class App extends Component {
 
       //  this.setState({ doors: [this.state.doors, this.state.newdoor]});
 
-        fetch('http://localhost:8080/api/addDoor', {
+        fetch('/api/addDoor', {
            method: 'POST',
            headers: {'Accept': 'application/json','Content-Type': 'application/json;charset=UTF-8'},
             body: JSON.stringify({"name": this.state.newdoor})//JSON.stringify("Hello")
